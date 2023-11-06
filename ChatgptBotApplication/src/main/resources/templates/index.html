@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send String Example</title>
+    <!-- Thêm jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sendButton').click(function() {
+                var userInput = $('#inputString').val();
+                $.ajax({
+                    url: '/chat',
+                    type: 'POST',
+                    contentType: 'text/plain',
+                    data: userInput,
+                    success: function(response) {
+                        $('#result').text(response);
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="text" id="inputString">
+<button id="sendButton">Send</button>
+<p id="result"></p>
+</body>
+</html>
